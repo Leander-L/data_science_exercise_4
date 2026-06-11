@@ -43,9 +43,22 @@ import matplotlib.pyplot as plt
 
 my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 x = range(len(my_list))
-plt.plot(x, my_list)
-plt.show()
+
+# Balkendiagramm für bessere Visualisierung der Sortierung
+# x- und y-Label setzen, um zu verdeutlichen, welche Achse, was anzeigt
+# Durch Subplots ist ggf. bessere Individualisierung der Plots ermöglicht
+
+fig, (unsorted_list_plot, sorted_list_plot) = plt.subplots(1,2, sharey=True)
+
+unsorted_list_plot.bar(x, my_list) 
+unsorted_list_plot.set_title("unsortierte Liste")
+unsorted_list_plot.set_xlabel("Index in der Liste")
+unsorted_list_plot.set_ylabel("Wert des Eintrags")
+
 mergeSort(my_list)
-x = range(len(my_list))
-plt.plot(x, my_list)
+sorted_list_plot.bar(x, my_list)
+sorted_list_plot.set_title("sortierte Liste")
+sorted_list_plot.set_xlabel("Index in der Liste")
+
+# Nur noch einmal show nötig und so ist es auch in der Darstellung beides auf einer Seite und auf einen Blick zu vergleichen
 plt.show()
