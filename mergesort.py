@@ -53,16 +53,28 @@ def merge_sort(unsorted_list):
 # Änderung: Programm in einer main-Funktion bündeln, um besser zwischen den Funktionen zu trennen
 def main():
     my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-    print("unsortierte Liste: " + str(my_list)) # Keine direkte Änderung, sondern eher für die Kontrolle, dass der Code von mergeSort noch dasselbe macht
     x = range(len(my_list))
-    plt.plot(x, my_list)
-    plt.show()
+
+    # Balkendiagramm für bessere Visualisierung der Sortierung
+    # x- und y-Label setzen, um zu verdeutlichen, welche Achse, was anzeigt
+    # Durch Subplots ist ggf. bessere Individualisierung der Plots ermöglicht
+
+    fig, (unsorted_list_plot, sorted_list_plot) = plt.subplots(1,2, sharey=True)
+
+    unsorted_list_plot.bar(x, my_list) 
+    unsorted_list_plot.set_title("unsortierte Liste")
+    unsorted_list_plot.set_xlabel("Index in der Liste")
+    unsorted_list_plot.set_ylabel("Wert des Eintrags")
+
     merge_sort(my_list)
-    print("sortierte Liste: " + str(my_list)) # Keine direkte Änderung, sondern eher für die Kontrolle, dass der Code von mergeSort noch dasselbe macht
-    x = range(len(my_list))
-    plt.plot(x, my_list)
+    sorted_list_plot.bar(x, my_list)
+    sorted_list_plot.set_title("sortierte Liste")
+    sorted_list_plot.set_xlabel("Index in der Liste")
+
+    # Nur noch einmal show nötig und so ist es auch in der Darstellung beides auf einer Seite und auf einen Blick zu vergleichen
     plt.show()
 
 # Notwendig, damit beim Datei-Start auch die main ausgeführt wird
 if __name__ == "__main__":
     main()
+
